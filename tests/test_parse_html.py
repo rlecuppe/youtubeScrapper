@@ -2,6 +2,7 @@ from scrapper_parser import parse_html
 
 video1 = parse_html("3cIObgePakE")
 video2 = parse_html("G02QEhmleYA")
+video3 = parse_html("fmsoym8I-3o")
 
 def test_parse_html_return():
         # Test if the function returns a dict
@@ -43,6 +44,19 @@ def test_parse_html_links2():
                 "https://www.instagram.com/gruntluv",
                 "http://facebook.com/gruntmag",
                 "http://www.gruntmag.com/"
+        ]
+
+def test_parse_html_timestamp():
+        assert video3["links"] == [
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=0s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=22s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=212s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=611s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=849s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=1048s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=1210s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=1393s",
+                "https://youtube.com/watch?v=fmsoym8I-3o&t=2362s"
         ]
 
 test_parse_html_return()

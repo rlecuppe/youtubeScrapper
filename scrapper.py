@@ -27,7 +27,6 @@ def main():
 
     with open(input_file, "r") as f:
         data = json.load(f)
-        print(data['videos_id'])
         videos_ids = data['videos_id']
     
     for id in videos_ids:

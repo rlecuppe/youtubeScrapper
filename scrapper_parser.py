@@ -26,8 +26,13 @@ def parse_html(id):
         for t in desc:
             description += t["text"].replace('\n','\\n')
             if "navigationEndpoint" in t.keys():
-                tmp_link = t["navigationEndpoint"]["urlEndpoint"]["url"]
-                links.append(unquote(tmp_link.split("&q=")[1].split("&v=")[0]).replace(u"\u200b", ""))
+                t = t["navigationEndpoint"]
+                if "urlEndpoint" in t:
+                    tmp_link = t["urlEndpoint"]["url"]
+                    links.append(unquote(tmp_link.split("&q=")[1].split("&v=")[0]).replace(u"\u200b", ""))
+                elif "commandMetadata" in t:
+                    tmp_link = t["commandMetadata"]["webCommandMetadata"]["url"]
+                    links.append(unquote("https://youtube.com"+tmp_link))
         response["description"] = description
         response["links"] = links
     except:

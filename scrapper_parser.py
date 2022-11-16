@@ -29,7 +29,10 @@ def parse_html(id):
                 t = t["navigationEndpoint"]
                 if "urlEndpoint" in t:
                     tmp_link = t["urlEndpoint"]["url"]
-                    links.append(unquote(tmp_link.split("&q=")[1].split("&v=")[0]).replace(u"\u200b", ""))
+                    if "redirect" in tmp_link:
+                        links.append(unquote(tmp_link.split("&q=")[1].split("&v=")[0]).replace(u"\u200b", ""))
+                    else:
+                        links.append(unquote(tmp_link))
                 elif "commandMetadata" in t:
                     tmp_link = t["commandMetadata"]["webCommandMetadata"]["url"]
                     links.append(unquote("https://youtube.com"+tmp_link))
